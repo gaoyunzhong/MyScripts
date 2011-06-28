@@ -1,0 +1,10 @@
+I have started to experiment with LLVM recently. I do not have Visual Studio on my machine so I am experimenting with cygwin.
+
+1. Download and read the "Getting Started guide" from llvm.org/docs
+2. Download and install a subversion client. I used SlikSvn. I intend to build LLVM suite from source, and I think it is easier to check out the repository using a version control tool like subversion.
+3. Download and install Git. There's a nice guide at <http://help.github.com/win-set-up-git/>. This is not necessary but this allows me to store my scripts (such as this one) somewhere on github.
+4. Download and install cygwin. It's sufficient to download the setup.exe and then install from the Internet. Check the "Requirement/software" section of the "Getting Started guide" as mentioned in step 1. In my experience, a lot of these tools are included by default when installing cygwin, but the following need to be explicitly specified when configuring the package list during the cygwin installation process:
+dejagnu, expect, perl, GNU M4, autoconf, automake, libtool, make, unzip, zip
+(For cygwin version 1.7.9)
+5. Download and install GCC on Windows. I used bloodshed Dev-C++. Or maybe use mingw.
+
