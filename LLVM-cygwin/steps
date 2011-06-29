@@ -7,4 +7,6 @@ I have started to experiment with LLVM recently. I do not have Visual Studio on 
 dejagnu, expect, perl, GNU M4, autoconf, automake, libtool, make, unzip, zip
 (For cygwin version 1.7.9)
 5. Download and install GCC on Windows. I used bloodshed Dev-C++. Or maybe use mingw.
-
+6. Download LLVM-GCC front end binary from: http://llvm.org/releases/2.9/llvm-gcc4.2-2.9-x86-mingw32.tar.bz2
+7. run init_setup.sh to extract the sources and build LLVM;
+8. run init_check.sh to compile a simple hello-world program;
