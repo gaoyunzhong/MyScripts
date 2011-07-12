@@ -10,3 +10,14 @@ dejagnu, expect, perl, GNU M4, autoconf, automake, libtool, make, unzip, zip
 6. Download LLVM-GCC front end binary from: http://llvm.org/releases/2.9/llvm-gcc4.2-2.9-x86-mingw32.tar.bz2
 7. run init_setup.sh to extract the sources and build LLVM;
 8. run init_check.sh to compile a simple hello-world program;
+
+
+TROUBLESHOOTING
+1. "llvm-gcc: CreateProcess: no such file or directory"
+   I use Windows Vista Home and when I use llvm-gcc (through init_check.sh as mentioned above in step #8) it gives me this succinct error message. To fix the problem, pass "-v" to llvm-gcc to find out what commands the driver is dispatching. Then run the individual command to identify each problem. I had to fix the following issues:
+   a) llvm-gcc cannot find cc1 and collect2: need to add llvm-gcc/libexec/gcc/i386-mingw32/<version_number> to my path;
+   b) cc1 and collect2 do not have execute-permission: I used chmod from cygwin; I heard that you can also use cacls from the command prompt;
+   c) if running llvm-gcc from cygwin, avoid passing cygwin-style paths to llvm-gcc (or create a short-cut to bypass the problem).
+
+2. "lli: error creating EE: Unable to find target for this triple (no targets are registered)"
+   Not solved yet. Will do.

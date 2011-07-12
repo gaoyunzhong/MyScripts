@@ -3,7 +3,8 @@
 LLVM_ROOT=$1
 INSTALL_ROOT=$1/install/bin
 FRONT_END_ROOT=$1/llvm-gcc/bin
-PATH=$PATH:$INSTALL/bin:$INSTALL_ROOT:$FRONT_END_ROOT
+FRONT_END_COLLECT2_PATH=$1/llvm-gcc/libexec/gcc/i386-mingw32/4.2.1
+PATH=$PATH:$INSTALL/bin:$INSTALL_ROOT:$FRONT_END_ROOT:$FRONT_END_COLLECT2_PATH
 
 cat > hello.c << EOF
 #include <stdio.h>
