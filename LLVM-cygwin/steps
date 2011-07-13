@@ -20,4 +20,10 @@ TROUBLESHOOTING
    c) if running llvm-gcc from cygwin, avoid passing cygwin-style paths to llvm-gcc (or create a short-cut to bypass the problem).
 
 2. "lli: error creating EE: Unable to find target for this triple (no targets are registered)"
-   Not solved yet. Will do.
+   The problem is in init_setup.sh, where I specified "--enable-targets=powerpc." Adding x86 to the list solves the problem. I was misled by the description of the "--enable-targets" option in the "Getting Started guide" where it specifically says this option affects "which targets will be built and linked into llc." I interpreted that to mean lli will not be affected. Anyway, problem solved.
+
+3. gmake complains of "multiple target patterns"
+   This has something to do with the cygwin-style vs dos-style file paths. So when I run "configure --prefix=<some_path>," the specified path is not expected to have colons in it, otherwise gmake will interpret the colon as a target-list separator. Colons are fairly common in dos-style paths (e.g., C:\My_dearest_LLVM); the solution is to use a cygwin-style path for configuration.
+
+4. autoconf/install-sh and autoconf/mkinstalldir not runnable
+   I have a little function do_remove_carriage in init_setup.sh to remove carriage-returns from these files and then use chmod to add executable-permission back to these files. This step is necessary before cygwin agrees to run these scripts. Seems that "chmod <cygwin-style path>" does not always update the result of "ls -l <dos-style path of same file", so I need to run chmod twice on these two files. A bit annoying.

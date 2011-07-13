@@ -5,7 +5,7 @@ LLVM_ROOT=$1
 function do_clean_all {
     local OBJ_ROOT=$LLVM_ROOT/build
 
-    cd LLVM_ROOT
+    cd $LLVM_ROOT
     rm -rf build install llvm llvm-gcc
     cd $OBJ_ROOT
     make clean
@@ -68,12 +68,12 @@ function do_configure {
     local SRC_ROOT=$LLVM_ROOT/llvm
     local OBJ_ROOT=$LLVM_ROOT/build
     local INSTALL_DIR=$LLVM_ROOT/install
-    local FRONT_END_DIR=$LLVM_ROOT/llvm-gcc/bin
+    local FRONT_END_DIR=$LLVM_ROOT/llvm-gcc
 
     mkdir -p $OBJ_ROOT
     cd $OBJ_ROOT
     $SRC_ROOT/configure --prefix=$INSTALL_DIR --with-llvmgccdir=$FRONT_END_DIR \
-        --disable-optimized --enable-targets=powerpc
+        --disable-optimized --enable-targets=powerpc,x86
 }
 
 function do_build {
@@ -85,7 +85,8 @@ function do_build {
     make install
 }
 
-#init_checkout
+#do_clean_all
+#do_init_checkout
 do_update_all
 do_remove_carriage
 do_configure
